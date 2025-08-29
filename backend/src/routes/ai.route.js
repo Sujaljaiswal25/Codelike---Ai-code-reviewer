@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 
-router.get('/get-review',aiController.getReview)
+router.post('/get-review',aiController.getReview)
 
 
 module.exports = router

@@ -1,0 +1,259 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+/* Desktop-specific refinements */
+@media (min-width: 901px) {
+  .left .code { padding-bottom: 4.25rem; } /* space for floating review button */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.1));
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+}
+
+.brand { 
+  display: flex; 
+  align-items: center; 
+  gap: 0.75rem; 
+}
+.brand h1 { 
+  font-size: 1.1rem; 
+  letter-spacing: 0.2px; 
+}
+.brand .sub { 
+  opacity: 0.7; 
+  font-size: 0.9rem; 
+}
+.brand .dot { 
+  height: 10px; 
+  width: 10px; 
+  border-radius: 999px; 
+  background: linear-gradient(135deg, #6ee7ff, #7c3aed); 
+  box-shadow: 0 0 16px rgba(124,58,237,0.6); 
+  display: inline-block; 
+}
+
+.app-main {
+  min-height: calc(100dvh - 64px);
+  height: calc(100dvh - 64px);
+  width: 100%;
+  padding: 1.25rem;
+  display: flex;
+  align-items: stretch;
+  gap: 1.25rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.panel {
+  height: 100%;
+  flex: 1 1 50%;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.03);
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toolbar + Theme toggle */
+.toolbar { display: flex; gap: 0.75rem; align-items: center; }
+.theme-toggle { border-radius: 0.6rem; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06); padding: 0.45rem 0.7rem; color: inherit; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
+.theme-toggle:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+
+/* Panel Titles */
+.panel-title { position: absolute; top: 0.6rem; left: 0.8rem; font-size: 0.85rem; opacity: 0.65; letter-spacing: 0.4px; }
+.left .panel-title { color: #c9e2ff; }
+.right .panel-title { color: #ffd8f2; }
+
+.left { 
+  background-color: rgba(0,0,0,0.4); 
+  display: flex;
+  flex-direction: column;
+}
+
+.left .code,
+.code pre,
+.code pre code {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  border-radius: 1rem;
+  background-color: transparent;
+}
+
+.left .code { 
+  padding: 0.75rem; 
+  flex: 1 1 auto;
+}
+
+.review-btn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+  background: linear-gradient(135deg, #6ee7ff, #7c3aed);
+  box-shadow: 0 6px 20px rgba(124,58,237,0.35);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.review-btn:hover { 
+  transform: translateY(-1px); 
+  box-shadow: 0 10px 28px rgba(124,58,237,0.45); 
+  filter: brightness(1.05); 
+}
+
+.review-btn:disabled { 
+  opacity: 0.7; 
+  cursor: not-allowed; 
+  filter: grayscale(0.3); 
+}
+
+/* Top progress bar */
+.top-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, #6ee7ff, #7c3aed, #6ee7ff);
+  background-size: 200% 100%;
+  animation: progressBar 1.2s linear infinite;
+  z-index: 20;
+}
+
+@keyframes progressBar {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.right { 
+  background-color: rgba(20,20,20,0.5); 
+}
+
+.right { 
+  padding: 1rem 1.25rem; 
+  overflow: auto; 
+}
+
+.right h1, .right h2, .right h3 { 
+  margin: 0.5rem 0 0.75rem; 
+}
+
+.right pre { 
+  background: rgba(255,255,255,0.04); 
+  border: 1px solid rgba(255,255,255,0.08); 
+  padding: 0.75rem 1rem; 
+  border-radius: 0.75rem; 
+  overflow: auto; 
+}
+
+.right code { 
+  font-family: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; 
+}
+
+.right p { 
+  line-height: 1.6; 
+  opacity: 0.92; 
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .app-main { 
+    flex-direction: column; 
+    min-height: auto; 
+    padding-bottom: 84px; /* space for mobile footer */
+  }
+  .panel { 
+    min-height: 42vh; 
+  }
+  .left .code { min-height: 40vh; }
+  /* Hide floating review button on mobile; footer provides actions */
+  .review-btn { display: none; }
+}
+
+/* Better wrapping for markdown on narrow screens */
+.right { word-break: break-word; overflow-wrap: anywhere; }
+
+/* Scrollbars */
+*::-webkit-scrollbar { 
+  height: 10px; 
+  width: 10px; 
+}
+*::-webkit-scrollbar-thumb { 
+  background: rgba(255,255,255,0.12); 
+  border-radius: 999px; 
+  border: 2px solid rgba(0,0,0,0); 
+}
+*::-webkit-scrollbar-track { 
+  background: transparent; 
+}
+
+/* Mobile bottom navigation */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.6rem env(safe-area-inset-right) 0.6rem env(safe-area-inset-left);
+  background: rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.mobile-nav .nav-btn {
+  flex: 1 1 32%;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: inherit;
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.75rem;
+}
+
+.mobile-nav .nav-btn.active {
+  background: rgba(255,255,255,0.08);
+}
+
+.mobile-nav .primary-action {
+  flex: 0 0 auto;
+  min-width: 120px;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: white;
+  background: linear-gradient(135deg, #6ee7ff, #7c3aed);
+  padding: 0.6rem 1rem;
+  box-shadow: 0 6px 20px rgba(124,58,237,0.35);
+}
+
+.mobile-nav .primary-action.secondary {
+  background: rgba(255,255,255,0.06);
+}

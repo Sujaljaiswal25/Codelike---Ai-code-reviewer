@@ -5,14 +5,18 @@ async function getReview(req, res){
 
     const code = req.body.code;
 
-    if (!code) {
-        return res.status(400).send("Prompt is required");
+    if (typeof code !== 'string' || code.trim().length === 0) {
+        return res.status(400).send("Code is required");
     }
 
-    const response = await aiService(code);
-
-
-    res.send(response);
+    try {
+        const response = await aiService.getAiReview(code);
+        res.send(response);
+    } catch (err) {
+        console.error("/ai/get-review error:", err?.message || err);
+        // Always return text to keep frontend rendering stable
+        res.status(500).send("Failed to generate AI review. Please try again.");
+    }
 
 }
 
