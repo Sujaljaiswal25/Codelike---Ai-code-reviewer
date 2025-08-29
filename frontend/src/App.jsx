@@ -47,7 +47,7 @@ function App() {
         return
       }
 
-      const response = await axios.post('http://localhost:3000/ai/get-review', { code: trimmed })
+      const response = await axios.post('https://codelike-ai-code-reviewer.onrender.com/ai/get-review', { code: trimmed })
       const data = response?.data
       let text
       if (typeof data === 'string') {
